@@ -1,4 +1,15 @@
 Revision history for Perl extension App::Office::CMS.
 
+0.91  Tue Dec  7 12:45:00 2010
+	- Replace Log::Dispatch with Log::Handler. Speed is not everything, but Log::Handler is faster.
+	- In .htoffice.csm.conf, change min_log_level to emergency, and add max_log_level as debug.
+		See Log::Handler for details.
+	- Replace CGI::Session with Data::Session.
+	- Add pg_bytea and pg_text to .htoffice.cms.conf, for use by Data::Session.
+	- Investigate 3 rich text editors: YUI's editor, TinyMCE and CKEditor. I could not get any working
+		properly with AJAX.
+	- Rename content form fields from head and body to head_text and body_text, in case one of those words
+		is reserved in the same way form is reserved in IE. Also, this makes them easier to search for.
+
 0.90  Mon Nov  1 13:20:00 2010
-	  - Original version.
+	- Original version.

@@ -19,7 +19,7 @@ use Try::Tiny;
 
 # We don't use Moose because we isa CGI::Application.
 
-our $VERSION = '0.90';
+our $VERSION = '0.91';
 
 # -----------------------------------------------
 
@@ -73,7 +73,7 @@ sub build_content_hash
 	};
 	my($page) = $self -> param('db') -> page -> get_page_by_id($$content{page_id});
 
-	for my $field_name (qw/body head/)
+	for my $field_name (qw/body_text head_text/)
 	{
 		$$content{$field_name} = $$valid{$field_name};
 	}

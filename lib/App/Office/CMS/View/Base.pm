@@ -44,7 +44,7 @@ has tmpl_path =>
 # If Moose...
 #use namespace::autoclean;
 
-our $VERSION = '0.90';
+our $VERSION = '0.91';
 
 # -----------------------------------------------
 
@@ -61,7 +61,7 @@ sub build_select
 
 	return $self -> templater -> render
 	(
-	 'select.tx',	
+	 'select.tx',
 	 {
 		 name => $id_name,
 		 loop =>

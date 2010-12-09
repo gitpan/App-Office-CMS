@@ -13,10 +13,7 @@
 <link rel="stylesheet" type="text/css" href="<: $validator_css_url :>/validator.css">
 
 <link rel="stylesheet" type="text/css" href="<: $yui_url :>/build/fonts/fonts-min.css">
-<link rel="stylesheet" type="text/css" href="<: $yui_url :>/build/datatable/assets/skins/sam/datatable.css">
-<link rel="stylesheet" type="text/css" href="<: $yui_url :>/build/menu/assets/skins/sam/menu.css">
-<link rel="stylesheet" type="text/css" href="<: $yui_url :>/build/tabview/assets/skins/sam/tabview.css">
-<link rel="stylesheet" type="text/css" href="<: $yui_url :>/build/treeview/assets/skins/sam/treeview.css">
+<link rel="stylesheet" type="text/css" href="<: $yui_url :>/build/assets/skins/sam/skin.css">
 
 <script type="text/javascript" src="<: $yui_url :>/build/yahoo/yahoo-min.js"></script>
 <script type="text/javascript" src="<: $yui_url :>/build/dom/dom-min.js"></script>
@@ -31,8 +28,6 @@
 <script type="text/javascript" src="<: $yui_url :>/build/tabview/tabview-min.js"></script>
 <script type="text/javascript" src="<: $yui_url :>/build/treeview/treeview.js"></script>
 
-<!-- <script type="text/javascript" src="<: $tiny_mce_url :>/tiny_mce.js"></script> -->
-
 <script type="text/javascript" src="<: $validator_js_url :>/validator.js"></script>
 
 <script type="text/javascript">
@@ -40,6 +35,7 @@
 
 function init()
 {
+
 <: $head_init :>
 }
 YAHOO.util.Event.onDOMReady(init);

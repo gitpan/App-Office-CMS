@@ -8,7 +8,7 @@ use App::Office::CMS::Util::Validator;
 use App::Office::CMS::Database;
 use App::Office::CMS::View;
 
-use CGI::Session;
+use Data::Session;
 
 use JSON::XS;
 
@@ -16,7 +16,7 @@ use Text::Xslate;
 
 # We don't use Moose because we ias CGI::Application.
 
-our $VERSION = '0.90';
+our $VERSION = '0.91';
 
 # -----------------------------------------------
 
@@ -89,20 +89,20 @@ sub cgiapp_prerun
 	# Set up the session. To simplify things we always use
 	# CGI::Session, and ignore the PSGI alternative.
 
-	my($q) = $self -> query;
+	my($config) = $self -> param('config');
+	my($q)      = $self -> query;
 
 	$self -> param(session =>
-	CGI::Session -> new
+	Data::Session -> new
 	(
-		${$self -> param('config')}{session_driver},
-		$q,
-		{
-			Handle    => $self -> param('db') -> dbh,
-			TableName => ${$self -> param('config')}{session_table_name},
-		},
-		{
-			name => 'sid',
-		}
+		data_source => $$config{dsn},
+		dbh         => $self -> param('db') -> dbh,
+		name        => 'sid',
+		pg_bytea    => $$config{pg_bytea} || 0,
+		pg_text     => $$config{pg_text}  || 0,
+		query       => $q,
+		table_name  => $$config{session_table_name},
+		type        => $$config{session_driver},
 	) );
 
 	# Set up a few more things.
@@ -127,7 +127,7 @@ sub cgiapp_prerun
 
 	$self -> log(info  => '');
 	$self -> log(info  => $q -> url(-full => 1, -path => 1) );
-	$self -> log(info  => "Param: $_: " . $q -> param($_) ) for $q -> param;
+	$self -> log(info  => "Param: $_: " . $q -> param($_) ) for grep{! /^(?:body_text|head_text)$/} $q -> param;
 	$self -> log(info  => 'Session id: ' . $self -> param('session') -> id);
 	$self -> log(debug => 'tmpl_path: ' . $self -> tmpl_path);
 

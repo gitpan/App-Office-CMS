@@ -5,7 +5,7 @@ use common::sense;
 
 use Text::Xslate 'mark_raw';
 
-our $VERSION = '0.90';
+our $VERSION = '0.91';
 
 # -----------------------------------------------
 
@@ -27,7 +27,7 @@ sub build_about_html
 
 	my($html) = $self -> param('templater') -> render('table.tx', {data => [@tr]});
 	$html     =~ s/\n//g;
-	
+
 	return $html;
 
 } # End of build_about_html.
@@ -190,7 +190,6 @@ sub display
 	 css_url           => $$config{css_url},
 	 head_init         => mark_raw($self -> build_head_init),
 	 head_js           => mark_raw($self -> build_head_js),
-	 tiny_mce_url      => $$config{tiny_mce_url},
 	 validator_css_url => $$config{validator_css_url},
 	 validator_js_url  => $$config{validator_js_url},
 	 yui_url           => $$config{yui_url},

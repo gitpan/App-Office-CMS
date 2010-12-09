@@ -41,6 +41,8 @@ var update_content_callback =
 			}
 			else
 			{
+				// Set the checkbox for is/isn't the homepage.
+
 				e = document.getElementById("update_content_homepage_div");
 				e.innerHTML = data.results.homepage;
 
